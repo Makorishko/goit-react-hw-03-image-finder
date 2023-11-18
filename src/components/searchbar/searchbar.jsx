@@ -4,9 +4,15 @@ import { SearchFormButton } from './searchbar-styled';
 import { SearchFormInput } from './searchbar-styled';
 
 export const Searchbar = ({ onSubmit }) => {
+  const handleSubmit = e => { 
+    e.preventDefault();
+    const value = e.target[1].value;
+    onSubmit(value);
+
+  }
   return (
     <Header>
-      <SearchForm onSubmit={onSubmit}>
+      <SearchForm onSubmit={handleSubmit}>
         <SearchFormButton type="submit">
           <svg viewBox="0 0 1024 1024" version="1.1">
             <path
