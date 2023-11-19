@@ -10,19 +10,16 @@ import React from 'react';
 import { fetchImages } from './image-api';
 
 export class App extends Component {
-  constructor(props) {
-    super(props);
-    this.end = React.createRef(null);
-    this.state = {
-      imageItems: [],
-      isLoading: false,
-      error: false,
-      page: 1,
-      value: '',
-      largeImageUrl: null,
-      total: 0,
-    };
-  }
+  end = React.createRef(null);
+  state = {
+    imageItems: [],
+    isLoading: false,
+    error: false,
+    page: 1,
+    value: '',
+    largeImageUrl: null,
+    total: 0,
+  };
 
   searchImage = value => {
     this.setState({ imageItems: [], value: value, page: 1 });

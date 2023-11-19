@@ -3,11 +3,6 @@ import { ModalWindow } from './modal-styled';
 import { Component } from 'react';
 
 export class Modal extends Component {
-  constructor(props) {
-    super(props);
-    this.escFunction = this.escFunction.bind(this);
-    this.onOverlaylick = this.onOverlaylick.bind(this);
-  }
 
   escFunction(event) {
     if (event.key === 'Escape') {
@@ -16,24 +11,25 @@ export class Modal extends Component {
   }
 
   componentDidMount() {
-    document.addEventListener('keydown', this.escFunction, false);
+    document.addEventListener('keydown', this.escFunction.bind(this), false);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('keydown', this.escFunction, false);
+    document.removeEventListener('keydown', this.escFunction.bind(this), false);
   }
 
-  onOverlaylick(e) {
+  onOverlayClick(e) {
     if (e.currentTarget === e.target) {
       this.props.onClick()
     }
 }
 
   render() {
-    const {  largeImageUrl } = this.props;
+    const { largeImageUrl } = this.props;
+    
 
     return (
-      <Overlay onClick={this.onOverlaylick}>
+      <Overlay onClick={this.onOverlayClick.bind(this)}>
         <ModalWindow>
           <img src={largeImageUrl} alt="" />
         </ModalWindow>
